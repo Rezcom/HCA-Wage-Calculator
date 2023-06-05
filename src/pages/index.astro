@@ -14,8 +14,6 @@
 		// NEW
 		/// ATB increases and cumulative increase
 		var atbincrease = [1.0525,1.045,1.04],cumulative = atbincrease.reduce(function(a,b) { return a + b; });
-		// Minimum Wage set
-		var minimumwage = 21;
 
 		// adding commas function
 		function commaSeparateNumber(val){
@@ -27,11 +25,6 @@
 		function calculate(){
 			let inputHourlyWage = document.getElementById("inputHourlyWage").value;
 			let inputHours = document.getElementById("inputHours").value;
-
-			if (inputHourlyWage < minimumwage){
-				inputHourlyWage = minimumwage;
-				document.getElementById("firstIncrease").innerHTML = "Min. Wage $" + commaSeparateNumber(minimumwage.toFixed(2));
-			}
 
 			let firstWage = inputHourlyWage * atbincrease[0];
 			let firstSalary = firstWage * inputHours * 52;
