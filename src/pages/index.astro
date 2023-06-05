@@ -7,9 +7,189 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>HCA Wage Calculator</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+	<script>
+		// NEW
+		/// ATB increases and cumulative increase
+		var atbincrease = [1.0525,1.045,1.04],cumulative = atbincrease.reduce(function(a,b) { return a + b; });
+		// Minimum Wage set
+		var minimumwage = 21;
+
+		// adding commas function
+		function commaSeparateNumber(val){
+			while (/(\d+)(\d{3})/.test(val.toString())){
+				val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+			}
+			return val;
+		}
+		function calculate(){
+			let inputHourlyWage = document.getElementById("inputHourlyWage").value;
+			let inputHours = document.getElementById("inputHours").value;
+
+			if (inputHourlyWage < minimumwage){
+				inputHourlyWage = minimumwage;
+				document.getElementById("firstIncrease").innerHTML = "Min. Wage $" + commaSeparateNumber(minimumwage.toFixed(2));
+			}
+
+			let firstWage = inputHourlyWage * atbincrease[0];
+			let firstSalary = firstWage * inputHours * 52;
+			document.getElementById("firstWage").innerHTML = "$" + commaSeparateNumber(firstWage.toFixed(2));
+			document.getElementById("firstSalary").innerHTML = "$" + commaSeparateNumber(firstSalary.toFixed(2));
+
+			let secondWage = firstWage * atbincrease[1];
+			let secondSalary = secondWage * inputHours * 52;
+			document.getElementById("secondWage").innerHTML = "$" + commaSeparateNumber(secondWage.toFixed(2));
+			document.getElementById("secondSalary").innerHTML = "$" + commaSeparateNumber(secondSalary.toFixed(2));
+
+			let thirdWage = secondWage * atbincrease[2];
+			let thirdSalary = thirdWage * inputHours * 52;
+			document.getElementById("thirdWage").innerHTML = "$" + commaSeparateNumber(thirdWage.toFixed(2));
+			document.getElementById("thirdSalary").innerHTML = "$" + commaSeparateNumber(thirdSalary.toFixed(2));
+
+
+		}
+
+		var button = document.getElementById("button");
+		button.addEventListener("click", calculate)
+
+		document.getElementById("inputHourlyWage").defaultValue = 25;
+		document.getElementById("inputHours").defaultValue = 40;
+
+	</script>
+	<div class="card">
+		<h1 class="title">HCA Wage Calculator</h1>
+		<div class="input">
+			<div>
+				<h2>Hourly Wage</h2>
+				<input type="number" id="inputHourlyWage">
+			</div>
+			<div>
+				<h2>Hours per Week</h2>
+				<input type="number" id="inputHours">
+			</div>
+
+		</div>
+
+		<div id="button">Calculate</div>
+		<table id="customers">
+			<tr>
+				<th>Time Period</th>
+				<th>Percent Increase</th>
+				<th>New Hourly Wage</th>
+				<th>New Annual Gross Wage</th>
+			</tr>
+			<tr>
+				<th>June 2023</th>
+				<th id="firstIncrease">5.25%</th>
+				<th id="firstWage">$26.31</th>
+				<th id="firstSalary">$54,730.00</th>
+			</tr>
+			<tr>
+				<th>April 2024</th>
+				<th>4.50%</th>
+				<th id="secondWage">$27.50</th>
+				<th id="secondSalary">$57,192.85</th>
+			</tr>
+			<tr>
+				<th>April 2025</th>
+				<th>4.00%</th>
+				<th id="thirdWage">	$28.60</th>
+				<th id="thirdSalary">$59,480.56</th>
+			</tr>
+		</table>
+		<p style="padding-top:5px"><i>NOTE: This calculator understates the total additional take home for our members because it does not factor in step increases.</i></p>
+
+	</div>
+
 	</body>
+
+
+
+
+
 </html>
+
+<style>
+	body {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		line-height: 1.5;
+		background: #EADEF7;
+		color: #333;
+		display: flex;
+		justify-content: center;
+	}
+
+	.input {
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+	}
+
+	.input div{
+		padding: 10px;
+	}
+
+	#button {
+		background-color: #5B4177;
+		color: white;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		text-align: center;
+		max-width: 300px;
+		margin: 10px;
+		border-radius: 10px;
+		font-family: 'Roboto Light', sans-serif;
+	}
+
+	#button:hover {
+		background-color: #522C79;
+		color: white;
+	}
+
+	#button:active {
+
+	}
+
+	.card {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		background: #fff;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		margin-bottom: 20px;
+		max-width: 1080px;
+	}
+	.title {
+		font-family: "Engravers MT", sans-serif;
+		text-align: center;
+	}
+
+	#customers {
+		font-family: "Roboto Light", sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	#customers td, #customers th {
+		padding: 8px;
+	}
+
+	#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+	#customers tr:hover {background-color: #ddd;}
+
+	#customers th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #ddd;
+		color: black;
+	}
+</style>
