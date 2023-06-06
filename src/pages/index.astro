@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>HCA Wage Calculator</title>
+		<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css" />
 	</head>
 	<body>
 		<script>
@@ -100,7 +101,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<p style="padding-top:5px">
+			<p>
 				<i
 					>NOTE: This calculator understates the total additional take home for
 					our members because it does not factor in step increases.</i
@@ -109,90 +110,3 @@
 		</div>
 	</body>
 </html>
-
-<style>
-	body {
-		font-family: "Roboto", sans-serif;
-		font-size: 16px;
-		line-height: 1.5;
-		background: #eadef7;
-		color: #333;
-		display: flex;
-		justify-content: center;
-	}
-
-	.input {
-		display: flex;
-		flex-direction: row;
-		margin: auto;
-	}
-
-	.input div {
-		padding: 10px;
-	}
-
-	#button {
-		background-color: #5b4177;
-		color: white;
-		padding: 16px;
-		font-size: 16px;
-		border: none;
-		cursor: pointer;
-		text-align: center;
-		max-width: 300px;
-		margin: 10px;
-		border-radius: 10px;
-		font-family: "Roboto Light", sans-serif;
-	}
-
-	#button:hover {
-		background-color: #522c79;
-		color: white;
-	}
-
-	#button:active {
-	}
-
-	.card {
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		background: #fff;
-		padding: 20px;
-		border-radius: 10px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		margin-bottom: 20px;
-		max-width: 1080px;
-	}
-	.title {
-		font-family: "Engravers MT", sans-serif;
-		text-align: center;
-	}
-
-	#customers {
-		font-family: "Roboto Light", sans-serif;
-		border-collapse: collapse;
-		width: 100%;
-	}
-
-	#customers td,
-	#customers th {
-		padding: 8px;
-	}
-
-	#customers tr:nth-child(even) {
-		background-color: #f2f2f2;
-	}
-
-	#customers tr:hover {
-		background-color: #ddd;
-	}
-
-	#customers th {
-		padding-top: 12px;
-		padding-bottom: 12px;
-		text-align: left;
-		background-color: #ddd;
-		color: black;
-	}
-</style>
