@@ -57,7 +57,7 @@
 					e.preventDefault()
 					calculate()
 				})
-			document.getElementById("inputHourlyWage").defaultValue = 25
+			document.getElementById("inputHourlyWage").defaultValue = "25.00"
 			document.getElementById("inputHours").defaultValue = 40
 		</script>
 		<main>
@@ -67,7 +67,7 @@
 					<div>
 						<label
 							>Hourly Wage
-							<input type="number" id="inputHourlyWage" />
+							<input type="number" step="0.01" id="inputHourlyWage" />
 						</label>
 					</div>
 					<div>
