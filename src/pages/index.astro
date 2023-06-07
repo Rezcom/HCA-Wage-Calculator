@@ -51,26 +51,35 @@
 				// Removed Minimum
 			}
 
-			var button = document.getElementById("button")
-			button.addEventListener("click", calculate)
-
+			document.body
+				.querySelector("#wage-form")
+				.addEventListener("submit", (e) => {
+					e.preventDefault()
+					calculate()
+				})
 			document.getElementById("inputHourlyWage").defaultValue = 25
 			document.getElementById("inputHours").defaultValue = 40
 		</script>
 		<div class="card">
 			<h1 class="title">HCA Wage Calculator</h1>
+			<form id="wage-form">
 			<div class="input">
 				<div>
-					<h2>Hourly Wage</h2>
+						<label
+							>Hourly Wage
 					<input type="number" id="inputHourlyWage" />
+						</label>
 				</div>
 				<div>
-					<h2>Hours per Week</h2>
+						<label
+							>Hours per Week
 					<input type="number" id="inputHours" />
+						</label>
 				</div>
 			</div>
+				<input type="submit" value="Calculate" />
+			</form>
 
-			<div id="button">Calculate</div>
 			<table id="customers">
 				<thead>
 					<tr>
